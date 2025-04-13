@@ -27,7 +27,7 @@ const RazorpayPayment = () => {
       const data = await response.json();
 
       const options = {
-        key: process.env.REACT_APP_RAZORPAY_KEY_ID || "rzp_test_1yTwZTB6pydcrl",
+        key: process.env.REACT_APP_RAZORPAY_KEY_ID || "rzp_live_1yTwZTB6pydcrl",
         amount: data.amount,
         currency: data.currency,
         name: "Your Company Name",

@@ -11,21 +11,23 @@ const products = [
     price: 16000,
     image: "https://m.media-amazon.com/images/I/81c50PU+lpL._SL1500_.jpg",
   },
+  
   {
     id: 1,
-    title: "Apple iPhone 15 Pro Max (512 GB) - White Titanium",
+    title: "OnePlus Nord CE4 Lite 5G ",
     description:
-      "FORGED IN TITANIUM — iPhone 15 Pro Max has a strong and light aerospace-grade titanium design with a textured matte-glass back. ",
+      "5500 mAh Battery & Reverse Charging: Ditch the power bank and press play all day with Nord CE4 Lite’s gigantic 5,500 mAh battery. You’ll even have enough juice to charge up your buddy’s phone with reverse wired charging",
     price: 16000,
-    image: "https://m.media-amazon.com/images/I/81c50PU+lpL._SL1500_.jpg",
+    image: "https://m.media-amazon.com/images/I/51Y-8Iwvx2L._SX679_.jpg",
   },
+
   {
     id: 1,
-    title: "Apple iPhone 15 Pro Max (512 GB) - White Titanium",
+    title: "iPhone 16 Pro 128 GB: 5G Mobile Phone",
     description:
-      "FORGED IN TITANIUM — iPhone 15 Pro Max has a strong and light aerospace-grade titanium design with a textured matte-glass back. ",
-    price: 16000,
-    image: "https://m.media-amazon.com/images/I/81c50PU+lpL._SL1500_.jpg",
+      "STUNNING TITANIUM DESIGN — iPhone 16 Pro has a strong and light titanium design with a larger 15.93 cm (6.3″) Super Retina XDR display. It’s remarkably durable with the latest-generation Ceramic Shield material that’s 2x tougher than any smartphone glass.",
+    price: 112000,
+    image: "https://m.media-amazon.com/images/I/61E-KWTh5GL._SX679_.jpg",
   },
   {
     id: 1,
