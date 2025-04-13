@@ -1,16 +1,15 @@
-// server/models/Product.js
 
 const mongoose = require("mongoose");
 
-// Define the product schema.
+
 const productSchema = new mongoose.Schema(
   {
-    title: { type: String, required: true }, // Name of the product.
-    description: { type: String }, // Product description.
-    price: { type: Number, required: true }, // Product price.
-    image: { type: String, default: "" }, // URL for product image.
+    title: { type: String, required: true },
+    description: { type: String },
+    price: { type: Number, required: true },
+    image: { type: String, default: "" },
   },
-  { timestamps: true } // Automatically add createdAt & updatedAt.
+  { timestamps: true } 
 );
 
 module.exports = mongoose.model("Product", productSchema);

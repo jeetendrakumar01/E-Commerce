@@ -7,13 +7,12 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const JWT_SECRET = process.env.JWT_SECRET || "secret123";
 const cors = require("cors");
-
 const Product = require("./models/Product");
 const User = require("./models/User");
 const Cart = require("./models/Cart");
 const Order = require("./models/Order");
-
 const auth = require("./middleware/auth");
+
 
 const razorpayInstance = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID || "rzp_live_1yTwZTB6pydcrl",
@@ -21,7 +20,6 @@ const razorpayInstance = new Razorpay({
 });
 
 app.use(cors());
-
 app.use(express.json());
 
 mongoose
@@ -86,7 +84,6 @@ app.post("/api/auth/register", async (req, res) => {
   }
 });
 
-// POST /api/auth/login - Log in an existing user.
 app.post("/api/auth/login", async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
@@ -95,14 +92,14 @@ app.post("/api/auth/login", async (req, res) => {
       .json({ message: "Please provide email and password." });
   }
   try {
-    // Search for the user.
+    
     const user = await User.findOne({ email });
     if (!user) return res.status(400).json({ message: "Invalid credentials." });
-    // Compare the provided password.
+    
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch)
       return res.status(400).json({ message: "Invalid credentials." });
-    // Generate JWT token.
+    
     const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "1h" });
     res.json({
       token,
@@ -113,7 +110,7 @@ app.post("/api/auth/login", async (req, res) => {
   }
 });
 
-// GET /api/cart - Fetch the user's cart.
+
 app.get("/api/cart", auth, async (req, res) => {
   try {
     const cart = await Cart.findOne({ user: req.user.id }).populate(
@@ -125,24 +122,23 @@ app.get("/api/cart", auth, async (req, res) => {
   }
 });
 
-// POST /api/cart - Add or update an item in the cart.
 app.post("/api/cart", auth, async (req, res) => {
   const { productId, quantity } = req.body;
   try {
     let cart = await Cart.findOne({ user: req.user.id });
     if (!cart) {
-      // If no cart exists, create a new one.
+      
       cart = new Cart({ user: req.user.id, items: [] });
     }
-    // Check if the product is already in the cart.
+    
     const itemIndex = cart.items.findIndex(
       (item) => item.product.toString() === productId
     );
     if (itemIndex > -1) {
-      // Increase quantity if it exists.
+     
       cart.items[itemIndex].quantity += quantity;
     } else {
-      // Otherwise, add the new item.
+     
       cart.items.push({ product: productId, quantity });
     }
     const updatedCart = await cart.save();
@@ -152,12 +148,12 @@ app.post("/api/cart", auth, async (req, res) => {
   }
 });
 
-// DELETE /api/cart/:itemId - Remove a product from the cart.
+
 app.delete("/api/cart/:itemId", auth, async (req, res) => {
   try {
     let cart = await Cart.findOne({ user: req.user.id });
     if (!cart) return res.status(404).json({ message: "Cart not found." });
-    // Filter out the item to be removed.
+    
     cart.items = cart.items.filter(
       (item) => item._id.toString() !== req.params.itemId
     );
@@ -168,25 +164,25 @@ app.delete("/api/cart/:itemId", auth, async (req, res) => {
   }
 });
 
-// POST /api/orders - Place an order.
+
 app.post("/api/orders", auth, async (req, res) => {
   try {
-    // Get the user's cart.
+    
     const cart = await Cart.findOne({ user: req.user.id }).populate(
       "items.product"
     );
     if (!cart || cart.items.length === 0) {
       return res.status(400).json({ message: "Cart is empty." });
     }
-    // Get additional order details from the request body
+    
     const { shippingAddress, contactInfo, paymentMethod } = req.body;
 
-    // Calculate total price.
+    
     let totalPrice = 0;
     cart.items.forEach((item) => {
       totalPrice += item.product.price * item.quantity;
     });
-    // Create a new order.
+    
     const order = new Order({
       user: req.user.id,
       items: cart.items,
@@ -196,7 +192,6 @@ app.post("/api/orders", auth, async (req, res) => {
       paymentMethod
     });
     const savedOrder = await order.save();
-    // Clear the cart after order placement.
     cart.items = [];
     await cart.save();
     res.status(201).json(savedOrder);
@@ -205,14 +200,14 @@ app.post("/api/orders", auth, async (req, res) => {
   }
 });
 
-// POST /api/razorpay/order - Create a new Razorpay order.
+
 app.post("/api/razorpay/order", auth, async (req, res) => {
   const { amount, currency } = req.body;
   const options = {
     amount: amount,
     currency: currency || "INR",
     receipt: `receipt_order_${Date.now()}`,
-    payment_capture: 1, // Auto-capture payment on success.
+    payment_capture: 1,
   };
   try {
     const order = await razorpayInstance.orders.create(options);

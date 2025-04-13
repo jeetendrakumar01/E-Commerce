@@ -1,8 +1,6 @@
-// server/models/Order.js
-
 const mongoose = require("mongoose");
 
-// Define individual order item schema.
+
 const orderItemSchema = new mongoose.Schema({
   product: {
     type: mongoose.Schema.Types.ObjectId,
@@ -12,7 +10,7 @@ const orderItemSchema = new mongoose.Schema({
   quantity: { type: Number, required: true },
 });
 
-// Define the order schema.
+
 const orderSchema = new mongoose.Schema(
   {
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
