@@ -178,6 +178,9 @@ app.post("/api/orders", auth, async (req, res) => {
     if (!cart || cart.items.length === 0) {
       return res.status(400).json({ message: "Cart is empty." });
     }
+    // Get additional order details from the request body
+    const { shippingAddress, contactInfo, paymentMethod } = req.body;
+
     // Calculate total price.
     let totalPrice = 0;
     cart.items.forEach((item) => {
@@ -188,6 +191,9 @@ app.post("/api/orders", auth, async (req, res) => {
       user: req.user.id,
       items: cart.items,
       totalPrice,
+      shippingAddress,
+      contactInfo,
+      paymentMethod
     });
     const savedOrder = await order.save();
     // Clear the cart after order placement.
