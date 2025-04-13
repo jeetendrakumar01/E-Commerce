@@ -19,7 +19,7 @@ const Auth = ({ onLogin }) => {
     e.preventDefault();
     const endpoint = isLogin ? "/api/auth/login" : "/api/auth/register";
     try {
-      const response = await fetch(`http://localhost:5000${endpoint}`, {
+      const response = await fetch(`https://e-commerce-cpjp-git-main-jeetendra-kumars-projects.vercel.app/auth${endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
