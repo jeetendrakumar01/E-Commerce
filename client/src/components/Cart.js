@@ -10,6 +10,13 @@ const Cart = () => {
     setCartItems(cart);
   }, []);
 
+  const handleRemoveItem = (index) => {
+    const updatedCart = [...cartItems];
+    updatedCart.splice(index, 1);
+    setCartItems(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  };
+
   const handleCheckout = () => {
     navigate("/checkout");
   };
@@ -26,13 +33,21 @@ const Cart = () => {
               key={index}
               className="bg-white p-4 rounded-lg shadow-md flex justify-between items-center"
             >
-              <div>
+              <div className="flex-1">
                 <h2 className="text-2xl font-semibold">{item.title}</h2>
                 <p className="text-gray-600">Quantity: {item.quantity}</p>
               </div>
-              <p className="text-xl font-bold text-indigo-600">
-                ${(item.price * item.quantity).toFixed(2)}
-              </p>
+              <div className="flex items-center space-x-4">
+                <p className="text-xl font-bold text-indigo-600">
+                  ${(item.price * item.quantity).toFixed(2)}
+                </p>
+                <button
+                  onClick={() => handleRemoveItem(index)}
+                  className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition-colors"
+                >
+                  Remove
+                </button>
+              </div>
             </div>
           ))}
           <button
