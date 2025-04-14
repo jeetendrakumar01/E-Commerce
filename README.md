@@ -1,4 +1,4 @@
-# Welcome to Our E-Commerce Project!
+# Welcome to Our E-Commerce Project
 
 e-commerce
 client    
