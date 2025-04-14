@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
 const Razorpay = require('razorpay');
-const config = require('../config');
+const config = require('../config/DataConnect');
 
 const razorpayInstance = new Razorpay({
   key_id: config.RAZORPAY_CONFIG.key_id,
