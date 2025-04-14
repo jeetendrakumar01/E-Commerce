@@ -78,6 +78,10 @@ Cart Page
 Checkout Page 
 ![image](https://github.com/user-attachments/assets/7a559dfb-7b8b-4f96-adb9-b70968c58dc3)
 
+Payment Page
+![image](https://github.com/user-attachments/assets/73b497b1-1480-4ede-8dfb-6d1769cb2651)
+
+
 
 
 
