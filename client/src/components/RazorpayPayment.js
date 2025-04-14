@@ -10,7 +10,7 @@ const RazorpayPayment = () => {
       const token = localStorage.getItem("token");
       console.log("Token from localStorage:", token);
 
-      const response = await fetch(`${apiUrl}/api/razorpay/order`, {
+      const response = await fetch(`${apiUrl}/api/payment/order`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -27,7 +27,7 @@ const RazorpayPayment = () => {
       const data = await response.json();
 
       const options = {
-        key: process.env.REACT_APP_RAZORPAY_KEY_ID || "rzp_live_1yTwZTB6pydcrl",
+        key: process.env.REACT_APP_RAZORPAY_KEY_ID,
         amount: data.amount,
         currency: data.currency,
         name: "Your Company Name",
@@ -40,7 +40,7 @@ const RazorpayPayment = () => {
         },
         prefill: {
           name: "Test User",
-          email: "jk@.com",
+          email: "test@example.com",
           contact: "00000000000",
         },
         notes: {
@@ -57,7 +57,7 @@ const RazorpayPayment = () => {
       rzp.open();
     } catch (error) {
       console.error("Payment error:", error);
-      setMessage("Error initiating payment: " + error.message);
+      setMessage(`Payment failed: ${error.message}. Please try again or contact support.`);
     }
   };
 

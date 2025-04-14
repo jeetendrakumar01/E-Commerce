@@ -4,7 +4,6 @@ const auth = require('../middleware/auth');
 const Cart = require('../models/Cart');
 const Order = require('../models/Order');
 
-// POST /api/orders - Place an order
 router.post('/', auth, async (req, res) => {
   try {
     const cart = await Cart.findOne({ user: req.user.id }).populate('items.product');
