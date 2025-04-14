@@ -69,3 +69,8 @@ Set Up
 ![image](https://github.com/user-attachments/assets/c685d124-d343-4929-a0f0-51ceceb89d62)
 
 
+Login/Register Page
+![image](https://github.com/user-attachments/assets/2f88d1db-f243-4a3e-ab4c-83dbab7e629a)
+
+
+
