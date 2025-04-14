@@ -68,6 +68,71 @@ const products = [
       "BUILT FOR APPLE INTELLIGENCE — Apple Intelligence is the personal intelligence system that helps you write, express yourself and get things done effortlessly. With groundbreaking privacy protections",
       price: 28299,
       image: "https://m.media-amazon.com/images/I/61ANQPyBfZL._SX679_.jpg",
+  },{
+    id: 1,
+    title: "Apple iPhone 15 Pro Max (512 GB) - White Titanium",
+    description:
+      "FORGED IN TITANIUM — iPhone 15 Pro Max has a strong and light aerospace-grade titanium design with a textured matte-glass back. ",
+    price: 16000,
+    image: "https://m.media-amazon.com/images/I/81c50PU+lpL._SL1500_.jpg",
+  },
+  
+  {
+    id: 1,
+    title: "OnePlus Nord CE4 Lite 5G ",
+    description:
+      "5500 mAh Battery & Reverse Charging: Ditch the power bank and press play all day with Nord CE4 Lite’s gigantic 5,500 mAh battery. You’ll even have enough juice to charge up your buddy’s phone with reverse wired charging",
+    price: 16000,
+    image: "https://m.media-amazon.com/images/I/51Y-8Iwvx2L._SX679_.jpg",
+  },
+
+  {
+    id: 1,
+    title: "iPhone 16 Pro 128 GB: 5G Mobile Phone",
+    description:
+      "STUNNING TITANIUM DESIGN — iPhone 16 Pro has a strong and light titanium design with a larger 15.93 cm (6.3″) Super Retina XDR display. It’s remarkably durable with the latest-generation Ceramic Shield material that’s 2x tougher than any smartphone glass.",
+    price: 112000,
+    image: "https://m.media-amazon.com/images/I/61E-KWTh5GL._SX679_.jpg",
+  },
+  {
+    id: 1,
+    title: "Apple iPhone 15 Pro Max (512 GB) - White Titanium",
+    description:
+      "FORGED IN TITANIUM — iPhone 15 Pro Max has a strong and light aerospace-grade titanium design with a textured matte-glass back. ",
+    price: 16000,
+    image: "https://m.media-amazon.com/images/I/81c50PU+lpL._SL1500_.jpg",
+  },
+  {
+    id: 1,
+    title: "Apple iPhone 15 Pro Max (512 GB) - White Titanium",
+    description:
+      "FORGED IN TITANIUM — iPhone 15 Pro Max has a strong and light aerospace-grade titanium design with a textured matte-glass back. ",
+    price: 16000,
+    image: "https://m.media-amazon.com/images/I/81c50PU+lpL._SL1500_.jpg",
+  },
+  {
+    id: 1,
+    title: "iPhone 16 Pro Max 1 TB: 5G Mobile Phone",
+    description:
+      "STUNNING TITANIUM DESIGN — iPhone 16 Pro Max has a strong and light titanium design with a larger 17.43 cm (6.9″) Super Retina XDR display.",
+      price: 16000,
+      image: "https://m.media-amazon.com/images/I/51uVytsMySL._SX679_.jpg",
+  },
+  {
+    id: 1,
+    title: "iPhone 16 512 GB: 5G Mobile Phone with Camera Control",
+    description:
+      "BUILT FOR APPLE INTELLIGENCE — Apple Intelligence is the personal intelligence system that helps you write, express yourself and get things done effortlessly. With groundbreaking privacy protections",
+      price: 16000,
+      image: "https://m.media-amazon.com/images/I/51hUtCMum4L._SL1500_.jpg",
+  },
+  {
+    id: 1,
+    title: "LG 34 Inches 21:9 Curved Ultra Wide Monitor, WQHD(3440 x 1440 Pixels)",
+    description:
+      "BUILT FOR APPLE INTELLIGENCE — Apple Intelligence is the personal intelligence system that helps you write, express yourself and get things done effortlessly. With groundbreaking privacy protections",
+      price: 28299,
+      image: "https://m.media-amazon.com/images/I/61ANQPyBfZL._SX679_.jpg",
   }
 ];
 
