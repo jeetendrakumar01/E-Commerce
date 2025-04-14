@@ -20,11 +20,13 @@
     />
 
     <title>React App</title>
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+    <script 
+      src="https://checkout.razorpay.com/v1/checkout.js" 
+      async 
+      defer
+      onload="console.log('Razorpay script loaded successfully')"
+      onerror="console.error('Failed to load Razorpay script')"
+    ></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
