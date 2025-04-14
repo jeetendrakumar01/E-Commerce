@@ -72,5 +72,13 @@ Set Up
 Login/Register Page
 ![image](https://github.com/user-attachments/assets/2f88d1db-f243-4a3e-ab4c-83dbab7e629a)
 
+Cart Page 
+![image](https://github.com/user-attachments/assets/621e89b0-b1f6-4c64-b6bc-216bf1f72861)
+
+Checkout Page 
+![image](https://github.com/user-attachments/assets/7a559dfb-7b8b-4f96-adb9-b70968c58dc3)
+
+
+
 
 
