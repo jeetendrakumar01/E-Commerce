@@ -5,7 +5,7 @@ const RazorpayPayment = () => {
 
   const initiatePayment = async () => {
     try {
-      const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+      const apiUrl = process.env.REACT_APP_API_URL || "https://e-commerce-website-o5k2.onrender.com";
 
       const token = localStorage.getItem("token");
       console.log("Token from localStorage:", token);
