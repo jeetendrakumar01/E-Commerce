@@ -2,25 +2,21 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "keywords": [],
   "license": "ISC",
   "author": "Jeetendra Kumar",
   "type": "commonjs",
-  "main": "server/index.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "express": "^5.1.0",
-    "iconv-lite": "^0.6.3",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.13.2",
+    "nodemon": "^3.1.9",
     "razorpay": "^2.9.6"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.9"
   }
 }
