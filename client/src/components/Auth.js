@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const BASE_URL = "https://e-commerce-ngi2.onrender.com";
+const BASE_URL = "https://e-commerce-website-o5k2.onrender.com";
 
 const Auth = ({ onLogin }) => {
   const [isLogin, setIsLogin] = useState(true);
