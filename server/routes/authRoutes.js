@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('../config/DataConnect');
+const auth = require('../middleware/auth');
 const User = require('../models/User');
 
 
@@ -64,5 +65,43 @@ router.post('/login', async (req, res) => {
     res.status(500).json({ message: "Error logging in." });
   }
 });
+
+
+router.get('/profile', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.json(user);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
+
+router.put('/profile', auth, async (req, res) => {
+  const { name, address, phone } = req.body;
+
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    user.name = name || user.name;
+    user.address = address || user.address;
+    user.phone = phone || user.phone;
+
+    await user.save();
+
+    res.json(user);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
 
 module.exports = router;

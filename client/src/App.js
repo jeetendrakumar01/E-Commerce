@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -16,46 +16,58 @@ import Payment from "./components/Payment";
 import RazorpayPayment from "./components/RazorpayPayment";
 import OrderSuccess from "./components/OrderSuccess";
 import Footer from "./components/Footer";
+import Profile from "./components/Profile";
+import { AuthContext } from "./AuthContext";
 
 function App() {
   const [token, setToken] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
-    if (storedToken) setToken(storedToken);
+    if (storedToken) {
+      setToken(storedToken);
+      setIsAuthenticated(true);
+    }
   }, []);
 
-  return (
-    <Router>
-      <div className="flex flex-col min-h-screen">
-        <Header />
-        {token && <Hero />}
-        <main className="flex-grow">
-          <Routes>
-            <Route
-              path="/auth"
-              element={
-                <Auth
-                  onLogin={(newToken) => {
-                    setToken(newToken);
-                    localStorage.setItem("token", newToken);
-                  }}
-                />
-              }
-            />
-            <Route
-              path="/products"
-              element={token ? <ProductList /> : <Navigate to="/auth" />}
-            />
-            <Route
-              path="/cart"
-              element={token ? <Cart /> : <Navigate to="/auth" />}
-            />
+  const handleLogin = (newToken) => {
+    setToken(newToken);
+    setIsAuthenticated(true);
+    localStorage.setItem("token", newToken);
+  };
 
-            <Route
-              path="/checkout"
-              element={token ? <CheckoutDetails /> : <Navigate to="/auth" />}
-            />
+  const handleLogout = () => {
+    setToken(null);
+    setIsAuthenticated(false);
+    localStorage.removeItem("token");
+  };
+
+  const authContextValue = useMemo(
+    () => ({
+      isAuthenticated,
+      login: handleLogin,
+      logout: handleLogout,
+    }),
+    [isAuthenticated]
+  );
+
+  return (
+    <AuthContext.Provider value={authContextValue}>
+      <Router>
+        <div className="flex flex-col min-h-screen">
+          <Header />
+          {isAuthenticated && <Hero />}
+          <main className="flex-grow">
+            <Routes>
+              <Route path="/auth" element={<Auth onLogin={handleLogin} />} />
+              <Route
+                path="/products"
+                element={isAuthenticated ? <ProductList /> : <Navigate to="/auth" />}
+              />
+              <Route path="/cart" element={isAuthenticated ? <Cart /> : <Navigate to="/auth" />} />
+
+              <Route path="/checkout" element={isAuthenticated ? <CheckoutDetails /> : <Navigate to="/auth" />} />
             <Route
               path="/payment"
               element={token ? <Payment /> : <Navigate to="/auth" />}
@@ -69,14 +81,19 @@ function App() {
               element={token ? <OrderSuccess /> : <Navigate to="/auth" />}
             />
             <Route
+                path="/profile"
+                element={isAuthenticated ? <Profile /> : <Navigate to="/auth" />}
+              />
+            <Route
               path="*"
-              element={<Navigate to={token ? "/products" : "/auth"} />}
+              element={<Navigate to={isAuthenticated ? "/products" : "/auth"} />}
             />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </AuthContext.Provider>
   );
 }
 
