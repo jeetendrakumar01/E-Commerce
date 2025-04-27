@@ -8,7 +8,7 @@ router.get('/', auth, async (req, res) => {
     const cart = await Cart.findOne({ user: req.user.id }).populate('items.product');
     res.json(cart || { user: req.user.id, items: [] });
   } catch (error) {
-    res.status(500).json({ message: "Error fetching cart." });
+    res.status(500).json({ message: "Error fetching cart......" });
   }
 });
 
